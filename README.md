@@ -1,6 +1,8 @@
 # tangierzaman
 
-This template should help get you started developing with Vue 3 in Vite.
+This App is a humble try to present the heritage of my home town : Tangier through the history.
+
+This concept can be used for any other city or any other project that needs an emphasize on the change that happend through time aka a before after evolution.
 
 ## Recommended IDE Setup
 
@@ -57,3 +59,5 @@ npm run test:e2e # or `npm run test:e2e:ci` for headless testing
 ```sh
 npm run lint
 ```
+
+Made with <3
