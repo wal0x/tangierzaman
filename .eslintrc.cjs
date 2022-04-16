@@ -9,9 +9,7 @@ module.exports = {
     "@vue/eslint-config-typescript/recommended",
     "@vue/eslint-config-prettier",
   ],
-  rules: {
-    "max-len": "off",
-  },
+  rules: {},
   env: {
     "vue/setup-compiler-macros": true,
   },
