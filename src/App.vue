@@ -1,9 +1,27 @@
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
-import { ref } from "vue";
-
+import { onMounted, ref } from "vue";
+import { computed } from "@vue/reactivity";
+import {
+  DEFAULT_LANGUAGE,
+  HTMLTagAdjustToLanguage,
+  LANGUAGES,
+  vueI18n,
+} from "./i18n/i18n.helper";
 let showMenu = ref(false);
+
+const currentLanguage = computed(() => vueI18n.global.locale);
+const availableLanguages = computed(() => Object.keys(LANGUAGES));
+
 const toggleNav = () => (showMenu.value = !showMenu.value);
+const changeLanguage = (language: LANGUAGES) => {
+  vueI18n.global.locale = language; // change vue-i18n language
+  HTMLTagAdjustToLanguage(language);
+};
+
+onMounted(() => {
+  HTMLTagAdjustToLanguage(DEFAULT_LANGUAGE);
+});
 </script>
 
 <template>
@@ -15,7 +33,8 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
         <router-link
           to="/"
           class="text-xl font-bold font-serif text-gray-100 md:text-2xl hover:text-blue-400"
-          >Tangier Zaman
+        >
+          <p>{{ $t("AppName") }}</p>
         </router-link>
         <!-- Mobile menu button -->
         <div @click="toggleNav" class="flex md:hidden">
@@ -36,12 +55,30 @@ const toggleNav = () => (showMenu.value = !showMenu.value);
       <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
       <ul
         :class="showMenu ? 'flex' : 'hidden'"
-        class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0"
+        class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:mt-0 capitalize"
       >
-        <li class="text-gray-100 hover:text-blue-400">Home</li>
-        <li class="text-gray-100 hover:text-blue-400">Album</li>
-        <li class="text-gray-100 hover:text-blue-400">Credits</li>
-        <li class="text-gray-100 hover:text-blue-400">Contact Us</li>
+        <li class="text-gray-100 hover:text-blue-400 md:mx-5">
+          {{ $t("Home") }}
+        </li>
+        <li class="text-gray-100 hover:text-blue-400 md:mx-5">
+          {{ $t("Album") }}
+        </li>
+        <li class="text-gray-100 hover:text-blue-400 md:mx-5">
+          {{ $t("Credits") }}
+        </li>
+        <li class="text-gray-100 hover:text-blue-400 md:mx-5">
+          {{ $t("ContactUs") }}
+        </li>
+        <li class="text-gray-100">
+          <span
+            v-for="lang in availableLanguages"
+            :key="lang"
+            class="underline uppercase hover:text-blue-400 mx-1"
+            :class="{ 'text-red-400': currentLanguage === LANGUAGES[lang] }"
+            @click="changeLanguage(LANGUAGES[lang])"
+            >{{ LANGUAGES[lang] }}</span
+          >
+        </li>
       </ul>
     </nav>
   </div>
