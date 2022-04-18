@@ -1,7 +1,9 @@
 {
     "AppName": "Tangier Zaman",
+    "AppDescription": "Tangier through history",
     "Home": "home",
     "Album": "album",
     "Credits": "credits",
-    "ContactUs": "contact us"
+    "ContactUs": "contact us",
+    "MadeWithLove": "Made with love"
 }

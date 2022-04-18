@@ -25,62 +25,70 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bg-black">
-    <nav
-      class="container px-6 py-8 mx-auto md:flex md:justify-between md:items-center"
-    >
-      <div class="flex items-center justify-between">
-        <router-link
-          to="/"
-          class="text-xl font-bold font-serif text-gray-100 md:text-2xl hover:text-blue-400"
-        >
-          <p>{{ $t("AppName") }}</p>
-        </router-link>
-        <!-- Mobile menu button -->
-        <div @click="toggleNav" class="flex md:hidden">
-          <button
-            type="button"
-            class="text-gray-100 hover:text-blue-400 active:text-blue-400 focus:outline-0 focus:bg-transparent focus:text-gray-400"
+  <div
+    class="container flex flex-col justify-between h-screen max-w-none bg-slate-200"
+  >
+    <header class="bg-black">
+      <nav class="px-6 py-8 mx-auto md:flex md:justify-between md:items-center">
+        <div class="flex items-center justify-between">
+          <router-link
+            to="/"
+            class="text-xl font-bold font-serif text-gray-100 md:text-2xl hover:text-blue-400"
           >
-            <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
-              <path
-                fill-rule="evenodd"
-                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-              ></path>
-            </svg>
-          </button>
+            <p>{{ $t("AppName") }}</p>
+          </router-link>
+          <!-- Mobile menu button -->
+          <div @click="toggleNav" class="flex md:hidden">
+            <button
+              type="button"
+              class="text-gray-100 hover:text-blue-400 active:text-blue-400 focus:outline-0 focus:bg-transparent focus:text-gray-400"
+            >
+              <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+                <path
+                  fill-rule="evenodd"
+                  d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+                ></path>
+              </svg>
+            </button>
+          </div>
         </div>
-      </div>
 
-      <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-      <ul
-        :class="showMenu ? 'flex' : 'hidden'"
-        class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:mt-0 capitalize"
-      >
-        <li class="text-gray-100 hover:text-blue-400 md:mx-5">
-          {{ $t("Home") }}
-        </li>
-        <li class="text-gray-100 hover:text-blue-400 md:mx-5">
-          {{ $t("Album") }}
-        </li>
-        <li class="text-gray-100 hover:text-blue-400 md:mx-5">
-          {{ $t("Credits") }}
-        </li>
-        <li class="text-gray-100 hover:text-blue-400 md:mx-5">
-          {{ $t("ContactUs") }}
-        </li>
-        <li class="text-gray-100">
-          <span
-            v-for="lang in availableLanguages"
-            :key="lang"
-            class="underline uppercase hover:text-blue-400 mx-1"
-            :class="{ 'text-red-400': currentLanguage === LANGUAGES[lang] }"
-            @click="changeLanguage(LANGUAGES[lang])"
-            >{{ LANGUAGES[lang] }}</span
-          >
-        </li>
-      </ul>
-    </nav>
+        <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+        <ul
+          :class="showMenu ? 'flex' : 'hidden'"
+          class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:mt-0 capitalize"
+        >
+          <li class="text-gray-100 hover:text-blue-400 md:mx-5">
+            {{ $t("Home") }}
+          </li>
+          <li class="text-gray-100 hover:text-blue-400 md:mx-5">
+            {{ $t("Album") }}
+          </li>
+          <li class="text-gray-100 hover:text-blue-400 md:mx-5">
+            {{ $t("Credits") }}
+          </li>
+          <li class="text-gray-100 hover:text-blue-400 md:mx-5">
+            {{ $t("ContactUs") }}
+          </li>
+          <li class="text-gray-100">
+            <span
+              v-for="lang in availableLanguages"
+              :key="lang"
+              class="underline uppercase hover:text-blue-400 mx-1"
+              :class="{ 'text-red-400': currentLanguage === LANGUAGES[lang] }"
+              @click="changeLanguage(LANGUAGES[lang])"
+              >{{ LANGUAGES[lang] }}</span
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="flex-1">
+      <router-view></router-view>
+    </main>
+    <footer class="bg-black text-center">
+      <p class="text-white capitalize">{{ $t("MadeWithLove") }}</p>
+    </footer>
   </div>
 </template>
 

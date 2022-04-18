@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import TheWelcome from "@/components/TheWelcome.vue";
+import CoverImage from "../components/CoverImage.vue";
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <CoverImage />
 </template>

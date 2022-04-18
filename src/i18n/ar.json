@@ -1,7 +1,9 @@
 {
     "AppName": "طنجة زمان",
+    "AppDescription": "طنجة على مر التاريخ",
     "Home": "الرئيسية",
     "Album": "الألبوم",
     "Credits": "شكر",
-    "ContactUs": "اتصل بنا"
+    "ContactUs": "اتصل بنا",
+    "MadeWithLove": "صُنِع بِحُب"
 }

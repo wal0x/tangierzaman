@@ -1,7 +1,9 @@
 {
     "AppName": "Tanger Zaman",
+    "AppDescription": "Tanger à travers l'histoire",
     "Home": "accueil",
     "Album": "album",
     "Credits": "remerciements",
-    "ContactUs": "nous contacter"
+    "ContactUs": "nous contacter",
+    "MadeWithLove": "fait avec amour"
 }
