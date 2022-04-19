@@ -26,9 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    class="container flex flex-col justify-between h-screen max-w-none bg-slate-200"
-  >
+  <div class="container flex flex-col justify-between h-screen max-w-none">
     <header class="bg-black">
       <nav class="px-6 py-8 mx-auto md:flex md:justify-between md:items-center">
         <div class="flex items-center justify-between">
@@ -89,5 +87,5 @@ onMounted(() => {
 </template>
 
 <style>
-/* @import "@/assets/base.css"; */
+@import "@/assets/base.css";
 </style>

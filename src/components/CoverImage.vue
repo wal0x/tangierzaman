@@ -8,11 +8,11 @@
     }"
   >
     <p
-      class="text-white text-5xl px-5 mx-5 pt-5 mt-5 text-center font-serif mix-blend-overlay"
+      class="text-slate-900 text-5xl px-5 mx-5 pt-5 mt-5 text-center font-serif mix-blend-overlay"
     >
       {{ $t("AppName") }}
     </p>
-    <p class="text-white text-xl pb-5 mb-5 text-center font-serif">
+    <p class="text-slate-200 text-xl pb-5 mb-5 text-center font-serif">
       {{ $t("AppDescription") }}
     </p>
     <!-- Photo by
