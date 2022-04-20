@@ -1,14 +1,24 @@
 <script setup lang="ts">
+import router from "@/router";
+
 defineProps<{
+  identifier: number;
   imageUrl: string;
   title: string;
   briefing: string;
   photographer: string;
   link?: string;
 }>();
+
+function openComparator(id: number) {
+  router.push({ name: "photocomparator", params: { id } });
+}
 </script>
 <template>
-  <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+  <div
+    class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3"
+    @click="openComparator(identifier)"
+  >
     <div
       class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
     >

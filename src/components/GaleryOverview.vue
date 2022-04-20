@@ -125,6 +125,7 @@ const currentLanguage = computed(() => vueI18n.global.locale);
     <PhotoOverview
       v-for="photo in arrayOfPhotosData"
       :key="photo.id"
+      :identifier="photo.id"
       :image-url="photo.imageURL"
       :title="photo.i18nData[currentLanguage].title"
       :briefing="photo.i18nData[currentLanguage].briefing"

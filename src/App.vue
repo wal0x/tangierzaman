@@ -53,7 +53,7 @@ onMounted(() => {
           class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:mt-0 capitalize"
         >
           <li class="text-gray-100 hover:text-blue-400 md:mx-5">
-            {{ $t("Home") }}
+            <router-link to="/">{{ $t("Home") }}</router-link>
           </li>
           <li class="text-gray-100 hover:text-blue-400 md:mx-5">
             {{ $t("Album") }}
