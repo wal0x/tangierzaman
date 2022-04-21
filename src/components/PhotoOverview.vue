@@ -2,7 +2,7 @@
 import router from "@/router";
 
 defineProps<{
-  identifier: number;
+  identifier: string;
   imageUrl: string;
   title: string;
   briefing: string;
