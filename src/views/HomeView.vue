@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import CoverImage from "../components/CoverImage.vue";
-import GaleryOverview from "../components/GaleryOverview.vue";
+import GalleryOverview from "../components/GalleryOverview.vue";
 </script>
 
 <template>
   <CoverImage />
-  <GaleryOverview />
+  <GalleryOverview />
 </template>

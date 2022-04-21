@@ -1,7 +1,5 @@
-<script setup lang="ts">
-import { LANGUAGES, vueI18n } from "@/i18n/i18n.helper";
-import { computed } from "vue";
-import PhotoOverview from "./PhotoOverview.vue";
+import { LANGUAGES } from "@/i18n/i18n.helper";
+import { defineStore } from "pinia";
 
 interface I18NData {
   title: string;
@@ -11,7 +9,7 @@ interface I18NData {
 }
 
 interface IImageData {
-  id: number;
+  id: string;
   imageURL: string;
   photographerLink: string;
   i18nData: {
@@ -21,7 +19,7 @@ interface IImageData {
 
 const arrayOfPhotosData: IImageData[] = [
   {
-    id: 1,
+    id: "1",
     imageURL:
       "https://images.unsplash.com/photo-1533501747004-381b96042e88?w=870",
     photographerLink: "https://unsplash.com/@raulcachophoto",
@@ -50,7 +48,7 @@ const arrayOfPhotosData: IImageData[] = [
     },
   },
   {
-    id: 2,
+    id: "2",
     imageURL:
       "https://images.unsplash.com/photo-1633264542743-c1acdb5eff0e?w=870",
     photographerLink: "https://unsplash.com/@haykad684",
@@ -82,7 +80,7 @@ const arrayOfPhotosData: IImageData[] = [
     },
   },
   {
-    id: 3,
+    id: "3",
     imageURL:
       "https://images.unsplash.com/photo-1641753352317-e078916ef903?w=870",
     photographerLink: "https://unsplash.com/@sediri_ayoub",
@@ -96,7 +94,7 @@ const arrayOfPhotosData: IImageData[] = [
         photographer: "Ayoub Sediri",
       },
       [LANGUAGES.FR]: {
-        title: "Socco interne",
+        title: "Socco interne FR",
         briefing:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. CS FR",
         description:
@@ -114,23 +112,15 @@ const arrayOfPhotosData: IImageData[] = [
   },
 ];
 
-const currentLanguage = computed(() => vueI18n.global.locale);
-</script>
-
-<template>
-  <h1 class="capitalize shadow-sm shadow-slate-400 p-4">
-    {{ $t("LastAdded") }}
-  </h1>
-  <div class="flex flex-wrap">
-    <PhotoOverview
-      v-for="photo in arrayOfPhotosData"
-      :key="photo.id"
-      :identifier="photo.id"
-      :image-url="photo.imageURL"
-      :title="photo.i18nData[currentLanguage].title"
-      :briefing="photo.i18nData[currentLanguage].briefing"
-      :photographer="photo.i18nData[currentLanguage].photographer"
-      :link="photo.photographerLink"
-    />
-  </div>
-</template>
+export const useGalleryStore = defineStore({
+  id: "gallery",
+  state: () => ({
+    gallery: arrayOfPhotosData,
+  }),
+  getters: {
+    getPhotoDataByID:
+      (state) =>
+      (id: string): IImageData | undefined =>
+        state.gallery.filter((photoData) => photoData.id === id)[0],
+  },
+});
