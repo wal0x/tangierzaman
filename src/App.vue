@@ -68,8 +68,8 @@ onMounted(() => {
             <span
               v-for="lang in availableLanguages"
               :key="lang"
-              class="underline uppercase hover:text-blue-400 mx-1"
-              :class="{ 'text-red-400': currentLanguage === LANGUAGES[lang] }"
+              class="underline uppercase hover:text-blue-400 mx-1 cursor-pointer"
+              :class="{ 'text-blue-400': currentLanguage === LANGUAGES[lang] }"
               @click="changeLanguage(LANGUAGES[lang])"
               >{{ LANGUAGES[lang] }}</span
             >
@@ -88,4 +88,8 @@ onMounted(() => {
 
 <style>
 @import "@/assets/base.css";
+
+.router-link-active {
+  color: rgb(96 165 250);
+}
 </style>
