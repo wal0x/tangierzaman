@@ -1,9 +1,18 @@
 <template>
   <div class="w-full flex flex-col p-3">
     <div
-      v-if="photoData"
       class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col"
     >
+      <div class="p-4 flex-1 flex flex-col">
+        <h3 class="mb-4 text-2xl">
+          {{ photoData.i18nData[currentLanguage].title }}
+        </h3>
+        <div class="mb-4 text-grey-darker text-sm flex-1">
+          <p>
+            {{ photoData?.i18nData[currentLanguage].description }}
+          </p>
+        </div>
+      </div>
       <div class="flex flex-row justify-center">
         <ImgComparisonSlider>
           <!-- eslint-disable -->
@@ -19,17 +28,9 @@
         </ImgComparisonSlider>
       </div>
       <div class="p-4 flex-1 flex flex-col">
-        <h3 class="mb-4 text-2xl">
-          {{ photoData.i18nData[currentLanguage].title }}
-        </h3>
-        <div class="mb-4 text-grey-darker text-sm flex-1">
-          <p>
-            {{ photoData?.i18nData[currentLanguage].description }}
-          </p>
-        </div>
         <a
           :href="photoData.photographerLink"
-          class="border-t border-grey-light pt-2 text-xs text-grey hover:text-red uppercase tracking-wide"
+          class="border-t border-b border-grey-light py-2 text-xs text-grey uppercase"
           style=""
         >
           {{ $t("PhotoBy") }} :
@@ -38,6 +39,13 @@
             >{{ photoData.i18nData[currentLanguage].photographer }}</span
           ></a
         >
+      </div>
+
+      <div class="flex justify-center">
+        <MapViewer
+          class="flex-1 h-96 max-w-5xl"
+          :gMapsLink="photoData.gMapsIFrameLink"
+        ></MapViewer>
       </div>
     </div>
   </div>
@@ -48,6 +56,7 @@ import { useGalleryStore } from "@/stores/gallery";
 import { useRoute } from "vue-router";
 import { computed } from "vue";
 import { vueI18n } from "@/i18n/i18n.helper";
+import MapViewer from "../components/MapViewer.vue";
 
 const store = useGalleryStore();
 const route = useRoute();
