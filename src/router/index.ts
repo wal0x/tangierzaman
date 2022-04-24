@@ -11,6 +11,12 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: "/galleryview",
+      name: "galleryview",
+      props: true,
+      component: () => import("../views/GalleryView.vue"),
+    },
+    {
       path: "/photocomparator/:id",
       name: "photocomparator",
       props: true,

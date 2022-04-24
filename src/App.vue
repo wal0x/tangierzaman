@@ -56,7 +56,7 @@ onMounted(() => {
             <router-link to="/">{{ $t("Home") }}</router-link>
           </li>
           <li class="text-gray-100 hover:text-blue-400 md:mx-5">
-            {{ $t("Album") }}
+            <router-link to="/galleryview">{{ $t("Album") }}</router-link>
           </li>
           <li class="text-gray-100 hover:text-blue-400 md:mx-5">
             {{ $t("Credits") }}

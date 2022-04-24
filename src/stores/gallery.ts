@@ -129,5 +129,9 @@ export const useGalleryStore = defineStore({
       (state) =>
       (id: string): IImageData | undefined =>
         state.gallery.filter((photoData) => photoData.id === id)[0],
+    getLatest:
+      (state) =>
+      (n: number = state.gallery.length): IImageData[] =>
+        state.gallery.slice(0, n),
   },
 });
