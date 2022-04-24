@@ -1,3 +1,4 @@
+import { useGalleryStore } from "@/stores/gallery";
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
@@ -12,12 +13,28 @@ const router = createRouter({
     {
       path: "/photocomparator/:id",
       name: "photocomparator",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      props: true,
       component: () => import("../views/PhotoComparator.vue"),
     },
+    {
+      path: "/notFound",
+      name: "notFound",
+      component: () => import("../views/NotFound.vue"),
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      component: () => import("../views/NotFound.vue"),
+    },
   ],
+});
+router.beforeEach((to, from, next) => {
+  if (to.name === "photocomparator") {
+    const store = useGalleryStore();
+    if (store.getPhotoDataByID(to.params["id"] as string)) next();
+    else next("/notFound");
+  } else {
+    next();
+  }
 });
 
 export default router;

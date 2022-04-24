@@ -9,7 +9,7 @@
         </h3>
         <div class="mb-4 text-grey-darker text-sm flex-1">
           <p>
-            {{ photoData?.i18nData[currentLanguage].description }}
+            {{ photoData.i18nData[currentLanguage].description }}
           </p>
         </div>
       </div>
@@ -19,11 +19,11 @@
           <img
             slot="first"
             class="max-h-screen"
-            :src="photoData?.imageURL" />
+            :src="photoData.imageURL" />
           <img
             class="gray max-h-screen"
             slot="second"
-            :src="photoData?.imageURL" />
+            :src="photoData.imageURL" />
           <!-- eslint-enable -->
         </ImgComparisonSlider>
       </div>
@@ -53,16 +53,16 @@
 <script setup lang="ts">
 import { ImgComparisonSlider } from "@img-comparison-slider/vue";
 import { useGalleryStore } from "@/stores/gallery";
-import { useRoute } from "vue-router";
 import { computed } from "vue";
 import { vueI18n } from "@/i18n/i18n.helper";
 import MapViewer from "../components/MapViewer.vue";
 
+const props = defineProps<{
+  id: string;
+}>();
+
 const store = useGalleryStore();
-const route = useRoute();
-
-const photoData = store.getPhotoDataByID(route.params.id as string);
-
+const photoData = store.getPhotoDataByID(props.id);
 const currentLanguage = computed(() => vueI18n.global.locale);
 </script>
 <style></style>
