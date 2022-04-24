@@ -32,6 +32,10 @@ const router = createRouter({
       component: () => import("../views/NotFound.vue"),
     },
   ],
+  scrollBehavior() {
+    // always scroll to top
+    return { top: 0 };
+  },
 });
 router.beforeEach((to, from, next) => {
   if (to.name === "photocomparator") {
